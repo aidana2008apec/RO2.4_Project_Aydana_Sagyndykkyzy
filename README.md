@@ -1,0 +1,1 @@
+# RO2.4_Project_Aydana_Sagyndykkyzy
