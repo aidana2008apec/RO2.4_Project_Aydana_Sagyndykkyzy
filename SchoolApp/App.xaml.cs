@@ -9,7 +9,8 @@
 
         protected override Window CreateWindow(IActivationState? activationState)
         {
-            return new Window(new MainPage()) { Title = "SchoolApp" };
+            // Use AppShell as the root so Shell routing and Shell.Current are available.
+            return new Window(new AppShell()) { Title = "SchoolApp" };
         }
     }
 }
