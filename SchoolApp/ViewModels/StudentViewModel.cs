@@ -1,13 +1,32 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using SchoolApp.Models;
 
 namespace SchoolApp.ViewModels;
 
-public class StudentsViewModel
+public class StudentsViewModel : INotifyPropertyChanged
 {
     public ObservableCollection<Student> Students { get; } = new();
 
-    public string NewName { get; set; } = "";
+    private string _newName = "";
+    public string NewName
+    {
+        get => _newName;
+        set
+        {
+            if (_newName == value) return;
+            _newName = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+    {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    }
 
     public StudentsViewModel()
     {
